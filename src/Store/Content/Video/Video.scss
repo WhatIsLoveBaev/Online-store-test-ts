@@ -1,0 +1,17 @@
+@import '../../Styles/Mixins.scss';
+@import '../../Styles/Vars.scss';
+
+.intro {
+    position: relative;
+    @include w100_h100;
+    margin: 0 auto;
+    @include flex(vertical);
+}
+.video {
+    position: relative;
+    width: 100%;
+    background-color: $black;
+}
+.video_media {
+    width: 100%;
+}

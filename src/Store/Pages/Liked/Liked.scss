@@ -1,0 +1,46 @@
+@import '../../Styles/Mixins.scss';
+@import '../../Styles/Vars.scss';
+
+.liked_container {
+    width: 100%;
+
+    & section {
+        width: 70%;
+        margin: 5% auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+.liked {
+    width: 100%;
+    @include flex(colCenter);
+    background-color: rgb(240, 240, 240);
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+    padding: 1% 0;
+}
+.no_liked_container {
+    width: 100%;
+    @include flex(colHorizontal);
+    padding: 10%;
+
+    & button {
+        border: 0;
+        background-color: #333;
+        color: $white;
+        @include font(medium) { font-size: 16px; }
+        cursor: pointer;
+        padding: 15px 20px;
+    }
+}
+.no_liked {
+    text-align: center;
+}
+.no_liked h2 {
+    @include font(bold) { font-size: 22px; }
+}
+.no_liked p {
+    @include font(medium) { font-size: 16px; }
+    padding: 5%;
+}

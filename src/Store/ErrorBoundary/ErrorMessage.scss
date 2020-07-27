@@ -1,0 +1,16 @@
+@import '../Styles/Mixins.scss';
+@import '../Styles/Vars.scss';
+
+.error {
+    width: 100%;
+    height: 100vh;
+    @include flex(center);
+    flex-wrap: wrap;
+    font-weight: bold;
+    font-family: 'Futura PT';
+    font-size: 30px;
+}
+.error div {
+    color: $red;
+    width: 70%;
+}

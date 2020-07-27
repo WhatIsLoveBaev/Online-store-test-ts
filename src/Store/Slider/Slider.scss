@@ -1,0 +1,228 @@
+@import '../Styles/Mixins.scss';
+@import '../Styles/Vars.scss';
+
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes text {
+    0% {
+        opacity:  0;
+        transform:  translateX(-100px);
+    }
+    100% {
+        opacity:  1;
+        transform:  translateX(0px);
+    }
+}
+
+.home {
+    /* height: 600px; */
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: $black;
+    overflow: hidden;
+    position: relative;
+
+    & .controls .prev {
+        left: 0;
+    }
+    & .controls .next {
+        right: 0;
+    }
+
+    & .controls .prev, & .controls .next {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        height: 60px;
+        width: 60px;
+        margin-top: -30px;
+        cursor: pointer;
+        transition: $transition_5;
+        @include flex(center);
+    }
+}
+.slider {
+    position: relative;
+    @include w100_h100;
+    @include flex(horizontal);
+}
+.slide {
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    animation: slide 2s ease;
+    padding: 25% 0;
+    position: relative;
+
+    &.active {
+        display: block;
+
+        & .caption {
+            opacity: 0;
+            animation: text 1s ease forwards;
+            animation-delay: 1s;
+
+            & button {
+                border: 0;
+                background-color: $colorTransparent;
+                width: auto;
+                height: auto;
+                line-height: inherit;
+                margin-top: 5px;
+                color: $white;
+                text-transform: uppercase;
+                font-size: 20px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.caption {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 20%;
+    @include font(bold);
+
+    &:hover .face.back {
+        transform: perspective(500px) rotateY(360deg);
+    }
+
+    &:hover .face.front {
+        transform: perspective(500px) rotateY(180deg);
+    }
+
+    & .face {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include w100_h100;
+        transform-style: preserve-3d;
+        @include flex(center);
+        transition: 2s ease-in-out;
+        backface-visibility: hidden;
+        transform: perspective(500px) rotateY(0deg);
+        cursor: pointer;
+
+        & h1 {
+            text-transform: uppercase;
+            /* transform: perspective(500px) translateZ(90px); */
+            font-size: 16px;
+        }
+    }
+
+    & .face.front {
+        background-color: $colorTransparent;
+    }
+
+    & .face.back {
+        background-color: $colorTransparent;
+        transform: perspective(500px) rotateY(180deg);
+        @include flex(center);
+
+        & h1 {
+            color: $white;
+        }
+    }
+}
+
+.back {
+    border: 0.5px solid $white;
+
+    & h1 {
+        position: relative;
+        z-index: 3;
+    }
+
+    &:hover::before {
+        transform: scaleY(0);
+    }
+    &:hover::after {
+        transform: scaleX(0);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: -4px;
+        width: calc(100% + 8px);
+        height: calc(100% - 12px);
+        background-color: black;
+        transition: .8s ease-in-out; 
+        transform: scaleY(1);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: -4px;
+        height: calc(100% + 8px);
+        width: calc(100% - 12px);
+        background-color: black;
+        transition: .8s ease-in-out; 
+        transform: scaleX(1);
+    }
+}
+
+.prev span, .next span {
+    border: solid rgb(60, 60, 60);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+}
+.prev span {
+    transform: rotate(135deg);
+}
+.next span {
+    transform: rotate(-45deg);
+}
+
+.circles {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    z-index: 2;
+    color: $white;
+    display: flex;
+    transform: translateX(-50%);
+}
+.circle {
+    @include flex(horizontal);
+    width: 15px;
+    height: 15px;
+    background-color: rgb(60, 60, 60);
+    border-radius: 50%;
+    margin: 0 3px;
+    cursor: pointer;
+
+    &.active {
+        background-color: rgb(130, 130, 130);
+    }
+}
+
+.container {
+    color: $white;
+    width: 20%;
+    height: 50%;
+    @include flex(center);
+}

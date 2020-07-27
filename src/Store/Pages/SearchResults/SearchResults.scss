@@ -1,0 +1,46 @@
+@import '../../Styles/Mixins.scss';
+@import '../../Styles/Vars.scss';
+
+.results_container {
+    width: 100%;
+    @include flex(colHorizontal);
+}
+.results {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    padding: 1% 0;
+
+    & p { @include font(medium) { font-size: 19px; } }
+
+    & h2 {
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 25px;
+    }
+}
+.preview_product_container {
+    width: $width70;
+    margin: 0 auto;
+    @include flex(horizontal);
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.no_results_container {
+    width: 100%;
+    background-color: lightcyan;
+    @include flex(horizontal);
+}
+.no_results {
+    width: 70%;
+    text-align: center;
+    padding: 5% 0;
+
+    & h2 {
+        @include font(bold) { font-size: 25px; }
+        margin-bottom: 1%;
+    }
+
+    & p { @include font(bold) { font-size: 19px; } }
+}

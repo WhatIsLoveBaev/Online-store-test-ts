@@ -1,0 +1,49 @@
+@import '../Styles/Mixins.scss';
+@import '../Styles/Vars.scss';
+
+.footer_container {
+    width: 100%;
+    position: relative;
+}
+.footer_list {
+    width: 100%;
+    height: 300px;
+    background-color: $eWhite;
+    @include flex(vertical);
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.footer_block {
+    width: 25%;
+    color: $gray;
+    @include flex(colHorizontal);
+}
+.fb_header {
+    @include font(medium) { font-size: 18px; }
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    cursor: default;
+}
+.fb_list {
+    & span {
+        display: block;
+        width: 100%;
+        height: 30px;
+        @include font(medium);
+        cursor: pointer;
+    }
+
+    & div:hover {
+        color: cornflowerblue;
+    }
+}
+.footer_container .info {
+    width: 100%;
+    @include flex(vertical);
+    justify-content: space-around;
+    height: 60px;
+    background-color: $dWhite;
+    color: $gray;
+    @include font(medium);
+    cursor: default;
+}

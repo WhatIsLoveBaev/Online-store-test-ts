@@ -1,0 +1,74 @@
+// Colors
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+// Fonts
+@mixin font($size) {
+    @if $size == light {
+        font-weight: lighter;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        @content;
+    } 
+    @if $size == medium {
+        font-weight: normal;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        @content;
+    }
+    @if $size == bold {
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 16px;
+        @content;
+    }
+}
+
+// Flex
+@mixin flex($pos) {
+    @if $pos == center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    @if $pos == horizontal {
+        display: flex;
+        justify-content: center;
+    }
+    @if $pos == vertical {
+        display: flex;
+        align-items: center;
+    }
+    @if $pos == colCenter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    @if $pos == colHorizontal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    @if $pos == colVertical {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+// Width & Height 100x100
+@mixin w100_h100 {
+    width: 100%;
+    height: 100%;
+}
+
+// AbsoluteCenter
+@mixin absoluteCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @content
+}

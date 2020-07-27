@@ -1,0 +1,13 @@
+@import '../../Styles/Mixins.scss';
+@import '../../Styles/Vars.scss';
+
+.not_found_container {
+    @include w100_h100;
+    @include flex(center);
+}
+.not_found {
+    width: 500px;
+    height: 500px;
+    background-color: khaki;
+    @include flex(center);
+}

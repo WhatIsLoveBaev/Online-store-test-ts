@@ -1,0 +1,81 @@
+@import '../../../Styles/Mixins.scss';
+@import '../../../Styles/Vars.scss';
+
+.sale_block_container {
+    width: 100%;
+    position: relative;
+    margin-top: 60px;
+    background-image: $bcgSaleBlock;
+    background-size: cover;
+}
+.sale_block {
+    width: $width70;
+    margin: 0 auto;
+    @include flex(colHorizontal);
+}
+.sb_header { 
+    width: 100%;
+    margin: 2%;
+    @include flex(horizontal);
+}
+.sb_header_text {
+    color: $white;
+    line-height: 2.7vw;
+    text-align: center;
+    cursor: pointer;
+    @include font(bold) { letter-spacing: 2.5px; font-size: 2.5vw; }
+
+    & .first {
+        background-color: $colorBlockSale;
+        line-height: 3.7vw;
+        box-shadow: 0.37em 0 0 $colorBlockSale, -0.37em 0 0 $colorBlockSale;
+    }
+}
+.sb_examples {
+    width: 100%;
+    padding: 0;
+    @include flex(horizontal);
+}
+.sb_example {
+    list-style: none;
+    margin: 0 10px;
+    height: 100%;
+    cursor: pointer;
+    transition: $transition_3;
+    @include font(bold);
+
+    &:hover {
+        transform: scale(1.025);
+    }
+    .sb_img {
+        height: calc(100% - 46px);
+        width: 100%;
+
+        & .img {
+            object-fit: cover;
+            @include w100_h100;
+        }
+    }
+    .sb_text {
+        width: 100%;
+        padding: 5.3% 0;
+        background-color: $white;
+        text-align: center;
+        overflow: hidden;
+        color: $black;
+    }
+}
+.sb_button {
+    background-color: $white;
+    padding: 7% 14%;
+    border: 0;
+    cursor: pointer;
+    transition: $transition_3;
+    margin: 15% 0;
+    @include font(bold) { font-size: 1vw; }
+
+    &:hover {
+        background-color: $black;
+        color: $white;
+    }
+}
