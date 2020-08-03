@@ -1,27 +1,42 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Link from '../../Link/index'
+import { DataBaseType } from "../../Reducers/DataBase/DataBase";
+import Header from './Header'
+import { getDataBase } from '../../Reducers/DataBase/DataBaseSelectors'
 import './Header.scss'
 
-import Header from './Header'
+interface DBStateType { DBState: DataBaseType }
 
-const HeaderContainer = ({ DBState }) => {
+interface DBSaleType {
+    productMakers: Array<string>,
+    productExamples: Array<{ id: string,
+        exampleMake: string,
+        example: string }>
+}
+
+
+const HeaderContainer = ({ DBState }: DBStateType) => {
+
 
     const [modal, setModal] = useState(false)
-    const [timeId, setTime] = useState(null)
-    const [elemTarget, setElemTarget] = useState('')
+    const [timeId, setTime] = useState(0)
+    const [elemTarget, setElemTarget]: any = useState()
 
-    let DBSale = {
+    let DBSale: DBSaleType = {
         productMakers: [],
-        productExamples: [{id: 'saleExample', exampleMake: '', example: 'https://beauty-hamster.ru/wp-content/uploads/2018/12/asos-sale-18.jpg'}]
+        productExamples: [{
+            id: 'saleExample',
+            exampleMake: '',
+            example: 'https://beauty-hamster.ru/wp-content/uploads/2018/12/asos-sale-18.jpg'
+        }]
     }
 
     for (let key in DBState) {
        if (DBState[key].saleGroup) DBSale.productMakers.push(key)
     }
 
-
-    const expandedList = () => {
+    const expandedList = (): JSX.Element => {
         const sale = elemTarget === 'Распродажа'
         const headingMakers = sale ? 'Список товаров со скидками' : 'Производитель товара'
 
@@ -66,10 +81,10 @@ const HeaderContainer = ({ DBState }) => {
         )  
     }
 
-    const productList = () => {
+    const productList = (): JSX.Element => {
         
         const keysList = Object.keys(DBState).map(elem => (
-            <span key={elem} className='product_element' onMouseEnter={(e) => onTime(e)}>{elem}</span>
+            <span key={elem} className='product_element' onMouseEnter={(e:React.MouseEvent<HTMLSpanElement>) => onTime(e)}>{elem}</span>
         ))
         return (
             <div className="product_list_container">
@@ -82,19 +97,21 @@ const HeaderContainer = ({ DBState }) => {
             </div>
         )
     }
-    const onTime = (e) => {
+    const onTime = (e: React.MouseEvent<HTMLSpanElement>) => {
         clearTimeout(timeId)
         setTime( setTimeout( ()=> setModal(true), 500) )
-        setElemTarget(e.target.textContent)
+        setElemTarget(e.currentTarget.textContent)
     }
-    const offTime = () => {
+    const offTime = (): void => {
         clearTimeout(timeId)
         setModal(false)
     }
 
-    return <Header modal={modal ? expandedList() : ''} productList={productList()} />  
+    return <Header modal={modal ? expandedList() : undefined} productList={productList()} />
 }
 
-const mapStateToProps = state => ( { DBState: state.DataBase } ) 
+const mapStateToProps = (state: { DataBase: DataBaseType }) => (
+     { DBState: getDataBase(state) } 
+)
 
 export default connect(mapStateToProps)(HeaderContainer)

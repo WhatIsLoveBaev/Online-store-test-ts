@@ -6,10 +6,7 @@ interface ErrorStateType {
     error: string,
     info: infoType
 }
-
-type infoType = {
-    componentStack?: string
-}
+type infoType = { componentStack?: string }
 
 
 class ErrorBoundary extends Component<{}, ErrorStateType> {

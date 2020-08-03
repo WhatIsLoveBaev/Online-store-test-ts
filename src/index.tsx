@@ -7,12 +7,12 @@ import './Futura/stylesheet.css'
 import reducer from './Reducers/index'
 
 
-import Store from './Store';
+import Store from './Store/index';
 
 
 const store = createStore(reducer)
 
-function saveToLocal(state) {
+function saveToLocal(state: any) {
   try {
       const local = JSON.stringify(state.Liked)
       localStorage.setItem('StoreLiked', local)

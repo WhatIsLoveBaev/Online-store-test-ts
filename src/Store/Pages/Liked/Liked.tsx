@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import ProductElement from '../ProductsPage/ShowProducts/ProductElement'
+import ProductElement from '../ProductsPage/ProductElement/ProductElement'
 import Link from '../../../Link/index'
 import './Liked.scss'
+import {elementStateType} from "../../../Reducers/Liked/Liked";
+import { getLiked } from '../../../Reducers/Liked/LikedSelector'
 
-const Liked = ({ LikedState }) => {
+interface LikedType { LikedState: Array<elementStateType> }
+
+const Liked = ({ LikedState }: LikedType) => {
     console.log(LikedState);
     if ( LikedState.length ) {
         return (
@@ -35,6 +39,8 @@ const Liked = ({ LikedState }) => {
     
 }
 
-const mapStateToProps = state => ( { LikedState: state.Liked } ) 
+const mapStateToProps = (state: {Liked: Array<elementStateType>}) => ( 
+    { LikedState: getLiked(state) }
+)
 
 export default connect(mapStateToProps)(Liked)

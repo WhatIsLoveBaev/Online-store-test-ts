@@ -2,20 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Link from '../../../Link/index'
 import { CollageElementType } from '../../../Reducers/Collage/CollageState'
+import { getCollage } from '../../../Reducers/Collage/CollageSelector'
+import Video from '../Video/index'
 import './Collage.scss'
 
-
-import Video from '../Video/index'
-
-type CollageType = {
-    collage: Array<CollageElementType>,
-    CollageState?: any
-}
+type CollageType = { collage: Array<CollageElementType> }
 
 const Collage = ({ collage }: CollageType): JSX.Element => (
     <div className="collage">
         {collage.map(elem => (
-
             <div key={elem.id} className="collage_elem">
                 <Link to={`/${elem.idGroup}/${elem.product}`}>
                     <div className="elem">
@@ -25,11 +20,12 @@ const Collage = ({ collage }: CollageType): JSX.Element => (
                     <span className="elem_label">{elem.label}</span>
                 </Link>
             </div>
-            
         ))}   
     </div>
 )
 
-const mapStateToProps = (state: CollageType) => ({ collage: state.CollageState })
+const mapStateToProps = (state: {CollageState: Array<CollageElementType>} ) => (
+    { collage: getCollage(state) }
+)
 
 export default connect(mapStateToProps)(Collage)

@@ -5,17 +5,8 @@ import tablet from './imgExamples/tablet.jpg'
 import cameras from './imgExamples/camera.jpg'
 import keyboard from './imgExamples/keyboard.jpg'
 
-export interface DBStateType {
-  DBState: DBStateGroupType 
-}
-export interface DBStateGroupType {
-  'Телефоны': DBStateElementType,
-  'Мониторы': DBStateElementType,
-  'Планшеты': DBStateElementType,
-  'Фотоаппараты': DBStateElementType,
-  'Смарт часы': DBStateElementType,
-  'Клавиатуры': DBStateElementType,
-}
+export interface DataBaseType { [index: string]: DBStateElementType } 
+
 export interface DBStateElementType {
   examplesList: Array<examplesListType>,
   examplesForContent: examplesForContent,
@@ -27,28 +18,39 @@ export interface DBStateElementType {
 }
 
 interface examplesForContent {
-  img: string
+  img?: any
 }
 interface examplesListType {
   example: string,
   exampleMake: string,
   id: string
 }
-interface productListArrayType {
+export interface productListArrayType {
   name: string,
   make: string,
-  shortDescription: string,
-  description: string,
+  shortDescription: Array<string>,
+  description: Array<any>,
   price: string,
   img: string,
   id: string,
   sale: string,
   groupEng: string
 }
+export const defaultProductList = {
+  name: '',
+  make: '',
+  shortDescription: [''],
+  description: [],
+  price: '',
+  img: '',
+  id: '',
+  sale: '',
+  groupEng: ''
+}
 
 
-const DB = {
-  'Телефоны' : {
+const DB: DataBaseType = {
+  'Телефоны' :  {
     examplesList: [
       {
         example: 'https://spb-mobil.ru/wp-content/uploads/2018/09/iphone-xr-black-720x720.png',
@@ -1158,6 +1160,6 @@ const DB = {
   }
 }
 
-export default function DataBase(state = DB) {
+export default function DataBase(state: DataBaseType = DB) {
     return state
 }

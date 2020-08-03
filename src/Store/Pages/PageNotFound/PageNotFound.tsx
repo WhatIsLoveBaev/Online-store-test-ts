@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '../../../Link/index'
 import './PageNotFound.scss'
 
-const PageNotFound = () => {
+const PageNotFound = (): JSX.Element => {
     return (
         <div className="no_liked_container">
                 <div className="no_liked">

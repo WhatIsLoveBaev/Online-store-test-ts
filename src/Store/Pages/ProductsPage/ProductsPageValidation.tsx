@@ -2,20 +2,28 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import ShowProducts from './ShowProducts'
-import ShowElement from './ShowElement'
-import PageNotFound from '../PageNotFound'
+import ShowProducts from './ShowProducts/index'
+import ShowElement from './ShowElement/index'
+import PageNotFound from '../PageNotFound/index'
+import {DataBaseType, defaultProductList, productListArrayType} from "../../../Reducers/DataBase/DataBase";
+import { getDataBase } from '../../../Reducers/DataBase/DataBaseSelectors'
+
+interface ValidationType {
+    DBState: DataBaseType,
+    ProductId: any,
+    SelectedId: any
+}
 
 
-const ProductsPageValidation = ({ ProductId, SelectedId, DBState }) => {
+const ProductsPageValidation = ({ ProductId, SelectedId, DBState }: ValidationType): JSX.Element => {
 
-    const pageId = ProductId ? ProductId.toLowerCase() : false
-    const selectId = SelectedId ? SelectedId.toLowerCase() : false
+    const pageId = ProductId ? ProductId.toLowerCase() : ''
+    const selectId = SelectedId ? SelectedId.toLowerCase() : ''
 
-    let validProduct = ''
-    let validSelected = ''
-    let validElem = {}
-    let saleAndName = ''
+    let validProduct: string = ''
+    let validSelected: string = ''
+    let validElem: productListArrayType = defaultProductList
+    let saleAndName: string = ''
 
     for (let key in DBState) {
         const groupEngName = DBState[key].engGroupName.toLowerCase()
@@ -36,10 +44,10 @@ const ProductsPageValidation = ({ ProductId, SelectedId, DBState }) => {
 
     }
     const ProductsFunc = () => {
-        const product = DBState[validProduct] ? true : false
+        const product = !!DBState[validProduct]
         const sale = validProduct === 'sale' ? 'sale' : validProduct
         
-        if (product || sale) return <ShowProducts idProduct={validProduct} />
+        if (product || sale) return <ShowProducts idProduct={validProduct} SelectedProduct={''} DBState={{}} />
         else return <PageNotFound />
     }
 
@@ -48,7 +56,7 @@ const ProductsPageValidation = ({ ProductId, SelectedId, DBState }) => {
         const name = validElem ? validElem.name : ''
 
         const selectedNameFilter = DBState[validProduct] ? 
-        DBState[validProduct].productListArray.filter(elem => elem.name === name) : false   //???
+        DBState[validProduct].productListArray.filter(elem => elem.name === name) : []   //???
 
         const fromSaleToElem = validProduct === 'sale' && saleAndName && validElem
         const saleSelected = validProduct === 'sale' && DBState[validSelected] ? validSelected : ''
@@ -56,11 +64,11 @@ const ProductsPageValidation = ({ ProductId, SelectedId, DBState }) => {
 
         if (fromSaleToElem) return <Redirect to={`/${saleAndName}/${validElem.name}`} />
 
-        else if (saleSelected) return <ShowProducts idProduct={validProduct} SelectedProduct={validSelected} />
+        else if (saleSelected) return <ShowProducts idProduct={validProduct} SelectedProduct={validSelected} DBState={{}} />
 
         else if (selectedNameFilter.length) return <ShowElement key={validElem.id} elem={validElem} />
 
-        else if (toSelectedPage) return <ShowProducts idProduct={validProduct} SelectedProduct={validSelected} />
+        else if (toSelectedPage) return <ShowProducts idProduct={validProduct} SelectedProduct={validSelected} DBState={{}} />
         
         else return <PageNotFound />
     }
@@ -72,6 +80,6 @@ const ProductsPageValidation = ({ ProductId, SelectedId, DBState }) => {
 }
 
 
-const mapStateToProps = state => ({ DBState: state.DataBase })
+const mapStateToProps = (state: {DataBase: DataBaseType}) => ({ DBState: getDataBase(state) })
 
-export default connect(mapStateToProps)(ProductsPageValidation)
+export default connect(mapStateToProps, null)(ProductsPageValidation)

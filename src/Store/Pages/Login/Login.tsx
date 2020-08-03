@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.scss'
 
-const Login = () => {
+const Login = (): JSX.Element => {
     return (
         <div className="login_container">LOGIN</div>
     )

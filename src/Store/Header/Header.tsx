@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from '../../Link/index'
-import Search from './Search/Search'
+import Search from './Search/index'
 
-const Header = ({ modal, productList }) => (
+interface HeaderProps { modal: JSX.Element | undefined, productList: JSX.Element }
+
+const Header = ({ modal, productList }: HeaderProps) => (
     
     <div className="header_menu">
         <div className='header_container'>

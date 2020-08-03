@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import Link from '../../../../Link/index'
 import './SaleLine.scss'
+import { DataBaseType } from "../../../../Reducers/DataBase/DataBase";
 
-const SaleLine = ({ DBState }) => {
+interface DBType { DBState: DataBaseType}
+
+const SaleLine = ({ DBState }: DBType): JSX.Element => {
 
     let arrSale = []
 
@@ -36,6 +39,6 @@ const SaleLine = ({ DBState }) => {
         </div>
     )
 }
-const mapStateToProps = state => ({ DBState: state.DataBase })
+const mapStateToProps = (state: { DataBase: DataBaseType }) => ({ DBState: state.DataBase })
      
 export default connect(mapStateToProps)(SaleLine)

@@ -2,18 +2,25 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './ShowProducts.scss'
 
-import SaleLine from '../../../Content/Sale/SaleLine'
-import ProductElement from './ProductElement'
+import SaleLine from '../../../Content/Sale/SaleLine/index'
+import ProductElement from '../ProductElement/ProductElement'
+import {DataBaseType, productListArrayType} from "../../../../Reducers/DataBase/DataBase";
+import { getDataBase } from "../../../../Reducers/DataBase/DataBaseSelectors";
 
+interface ShowProductsType {
+    DBState: DataBaseType,
+    idProduct: string,
+    SelectedProduct: string
+}
 
-const ShowProducts = ({ idProduct, SelectedProduct, DBState }) => {
+const ShowProducts = ({ idProduct, SelectedProduct, DBState }: ShowProductsType) => {
 
     const sale = idProduct === 'sale'
     const selected = idProduct && SelectedProduct
     
 
-    let arraySale = []
-    let arraySelected = []
+    let arraySale: Array<productListArrayType> = []
+    let arraySelected: Array<productListArrayType> = []
     
     if (sale && SelectedProduct) {
         if (DBState[SelectedProduct] && DBState[SelectedProduct].saleGroup) {
@@ -41,7 +48,7 @@ const ShowProducts = ({ idProduct, SelectedProduct, DBState }) => {
 
     const whatRender = sale ? arraySale : selected ? arraySelected : DBState[idProduct].productListArray
 
-    const Show = whatRender.map(elem => <ProductElement key={elem.id} elem={elem}/>)
+    const Show = whatRender.map(elem => <ProductElement key={elem.id} elem={elem} />)
 
     return (
         <div>
@@ -61,6 +68,8 @@ const ShowProducts = ({ idProduct, SelectedProduct, DBState }) => {
     )
 }
 
-const mapStateToProps = state => ({ DBState: state.DataBase })
+const mapStateToProps = (state: { DataBase: DataBaseType} ) => (
+    { DBState: getDataBase(state) }
+)
 
-export default connect(mapStateToProps)(ShowProducts)
+export default connect(mapStateToProps, null)(ShowProducts)

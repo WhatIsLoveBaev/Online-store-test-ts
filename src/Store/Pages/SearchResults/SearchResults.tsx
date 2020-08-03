@@ -2,12 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux'
 import './SearchResults.scss'
 
-import SaleLine from '../../Content/Sale/SaleLine'
-import ProductElement from '../ProductsPage/ShowProducts/ProductElement'
+import SaleLine from '../../Content/Sale/SaleLine/index'
+import ProductElement from '../ProductsPage/ProductElement/ProductElement'
+import {DataBaseType, productListArrayType} from "../../../Reducers/DataBase/DataBase";
+import {searchInputType} from "../../../Reducers/Header/HeaderReducer";
+import { getHeaderSearch } from '../../../Reducers/Header/HeaderSelector'
+import { getDataBase } from '../../../Reducers/DataBase/DataBaseSelectors';
 
-const SearchResults = ({ results, DBState }) => {
+interface SearchResultsType {
+    DBState: DataBaseType,
+    results: string
+}
 
-    let filteredName = []
+const SearchResults = ({ results, DBState }: SearchResultsType) => {
+
+    let filteredName: Array<productListArrayType> = []
     let filteredKey = ''
 
     if (results && results.length > 1) {
@@ -68,11 +77,15 @@ const SearchResults = ({ results, DBState }) => {
         </div>  
     )
 }
+interface mapStateToPropsTypes {
+    DataBase: DataBaseType
+    HeaderReducer: searchInputType
+}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: mapStateToPropsTypes) => {
     return {
-        DBState: state.DataBase,
-        searchState: state.HeaderReducer.searchInput,
+        DBState: getDataBase(state),
+        searchState: getHeaderSearch(state),
     }
 }
 

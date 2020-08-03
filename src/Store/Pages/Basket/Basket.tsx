@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Basket.scss'
 
-const Basket = () => {
+const Basket = (): JSX.Element => {
     return (
         <div className="basket_container">BASKET</div>
     )

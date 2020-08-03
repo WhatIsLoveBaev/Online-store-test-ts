@@ -1,7 +1,7 @@
 import { SEARCH_INPUT } from '../../Actions/HeaderActions'
 import { searchActionType } from '../../Actions/HeaderActions'
 
-type searchInputType = { searchInput: string }
+export type searchInputType = { searchInput: string }
 
 const initial: searchInputType = { searchInput: '' }
 

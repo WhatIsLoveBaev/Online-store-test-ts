@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link as LinkWithStyles } from 'react-router-dom';
 import styled from 'styled-components';
 

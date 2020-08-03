@@ -1,10 +1,7 @@
 import React from 'react'
 import './Video.scss'
 
-interface videoType {
-    video: string,
-    label?: string
-}
+interface videoType { video: string, label?: string }
 
 const Video = ({ video } : videoType): JSX.Element => {
     return (

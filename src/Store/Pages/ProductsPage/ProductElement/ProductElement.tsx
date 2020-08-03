@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
-import Link from '../../../../Link/index'
+import Link from '../../../../Link'
 import { connect } from 'react-redux'
-import { deleteLike } from '../../../../Actions/LikedActions.ts'
-import './ShowProducts.scss'
+import { deleteLike } from '../../../../Actions/LikedActions'
+import '../ShowProducts/ShowProducts.scss'
+import {productListArrayType} from "../../../../Reducers/DataBase/DataBase";
 
-const ProductElement = ({ elem, liked, onDelete }) => {
+interface ProductElementType {
+    elem: productListArrayType,
+    liked?: boolean,
+    onDelete: (e: string) => void,
+}
+
+const ProductElement = ({ elem, liked, onDelete }: ProductElementType) => {
 
     const [remove, setRemove] = useState('')
 
@@ -18,7 +25,7 @@ const ProductElement = ({ elem, liked, onDelete }) => {
     const addToBasket = liked ? <span className='add_to_basket' onClick={() => alert(1)}>Отправить в корзину</span> : ''
 
     const priceWithSale = elem.sale ? 
-    `${ ('' + Math.round( ( elem.price.split(' ').join('') / 100 * (100-elem.sale) ) / 10 ) * 10)
+    `${ ('' + Math.round( ( Number(elem.price.split(' ').join(''))  / 100 * (100-Number( elem.sale )) ) / 10 ) * 10)
     .replace(/(\d)(?=(?:\d{3})+(?:\.|$))|(\.\d\d?)\d*$/g, (m, s1, s2) =>  s2 || (s1 + ' ') ) }` : ''
 
 
@@ -42,12 +49,9 @@ const ProductElement = ({ elem, liked, onDelete }) => {
         )
 }
 
-const mapStateToProps = state => ( { DBState: state.DataBase } ) 
+/*const mapStateToProps = state => ( { DBState: state.DataBase } ) */
 
-const mapDispatchToProps = dispatch => ( 
-    {
-        onDelete: payload => dispatch( deleteLike(payload) )
-    } 
-)
+const mapDispatchToProps = (dispatch: any) =>
+    ( {onDelete: (payload: string) => dispatch( deleteLike(payload) )} )
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductElement)
+export default connect(null, mapDispatchToProps)(ProductElement)

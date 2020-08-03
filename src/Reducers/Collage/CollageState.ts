@@ -41,7 +41,7 @@ const Collage: Array<CollageElementType> = [
     }
 ]
 
-const CollageState = (state = Collage) => {
+const CollageState = (state: Array<CollageElementType> = Collage) => {
     return state
 }
 

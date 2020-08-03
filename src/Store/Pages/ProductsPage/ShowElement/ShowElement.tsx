@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { addLike } from '../../../../Actions/LikedActions.ts'
+import { addLike } from '../../../../Actions/LikedActions'
+import {productListArrayType} from "../../../../Reducers/DataBase/DataBase";
+import {elementStateType} from "../../../../Reducers/Liked/Liked";
 import './ShowElement.scss'
 
-const ShowElement = ({ elem, onLiked }) => {
+interface ShowElementType {
+    onLiked: (e: productListArrayType) => void,
+    elem: productListArrayType
+}
+
+const ShowElement = ({ elem, onLiked }: ShowElementType) => {
 
     const [activeLike, setActiveLike] = useState('')
-    let timeId = ''
+    let timeId: number = 0
     useEffect(() => {
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         if (activeLike) { onLiked(elem); timeId = setTimeout(() => setActiveLike(''), 400) }
         
 
@@ -18,15 +26,10 @@ const ShowElement = ({ elem, onLiked }) => {
 
     
     const priceWithSale = sale ? 
-    `${ ('' + Math.round( ( price.split(' ').join('') / 100 * (100-sale) ) / 10 ) * 10)
+    `${ ('' + Math.round( ( Number(price.split(' ').join('')) / 100 * (100-Number(sale)) ) / 10 ) * 10)
     .replace(/(\d)(?=(?:\d{3})+(?:\.|$))|(\.\d\d?)\d*$/g, (m, s1, s2) =>  s2 || (s1 + ' ') ) }` : ''
 
     const salePriceDiv = priceWithSale ? <span className="sale">{price + ' руб.'}</span> : ''
-
-    const like = () => {
-        
-        
-    }
 
     return (
         <div className='item_container'>
@@ -57,12 +60,9 @@ const ShowElement = ({ elem, onLiked }) => {
     )
 }
 
-const mapStateToProps = state => ( { DBState: state.DataBase } ) 
 
-const mapDispatchToProps = dispatch => ( 
-    {
-        onLiked: payload => dispatch( addLike(payload) )
-    } 
+const mapDispatchToProps = (dispatch: any) => (
+    { onLiked: (payload: elementStateType) => dispatch( addLike(payload) ) }
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowElement)
+export default connect(null, mapDispatchToProps)(ShowElement)
