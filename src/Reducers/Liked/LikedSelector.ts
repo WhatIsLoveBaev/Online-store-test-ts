@@ -1,5 +1,9 @@
+import { createSelector } from 'reselect'
 import { elementStateType } from './Liked'
 
-export const getLiked = (state: { Liked: Array<elementStateType> }) => {
+export const getLikedSelector = (state: { Liked: Array<elementStateType> }) => {
     return state.Liked
 }
+export const getLiked = createSelector(getLikedSelector, (Liked: Array<elementStateType>): Array<elementStateType> => {
+    return Liked
+})

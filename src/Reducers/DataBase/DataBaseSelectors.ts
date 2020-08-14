@@ -2,12 +2,10 @@ import { createSelector } from 'reselect'
 import { DataBaseType } from './DataBase';
 
 
-export const getDataBaseSelector = (state: { DataBase: DataBaseType }): any => {
-    console.log('getDataBase')
+export const getDataBaseSelector = (state: { DataBase: DataBaseType }) => {
     return state.DataBase
 }
 
-export const getDataBase = createSelector(getDataBaseSelector, (DataBase) => {
-    console.log('getDataBaseSUPER')
+export const getDataBase = createSelector(getDataBaseSelector, (DataBase: DataBaseType): DataBaseType => {
     return DataBase
 })

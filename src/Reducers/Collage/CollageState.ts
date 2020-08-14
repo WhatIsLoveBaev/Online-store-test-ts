@@ -1,9 +1,9 @@
-/* import videoIphone from './iphone_video.mp4'
-import videoSamsung from './samsung_video.mp4' */
+const videoIphone =  require("./iphone_video.mp4")
+const videoSamsung =  require("./samsung_video.mp4")
 
 export interface CollageElementType {
     img?: string,
-    video? : string
+    video? : any
     idGroup?: string,
     product?: string,
     label?: string,
@@ -19,14 +19,14 @@ const Collage: Array<CollageElementType> = [
         id: 'NikonPh156'
     },
     {
-        video: '',
+        video: videoIphone,
         idGroup: 'phones',
         product: 'samsung',
         label: 'Samsung',
         id: 'PSam'
     },
     {
-        video: '',
+        video: videoSamsung,
         idGroup: 'phones',
         product: 'apple',
         label: 'Iphone',
