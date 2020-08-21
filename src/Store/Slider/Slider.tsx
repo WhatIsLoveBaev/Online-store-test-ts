@@ -6,6 +6,7 @@ import imgIphone from './Photos/iphone.jpg'
 import imgSamsung from './Photos/samsung.jpg'
 import imgXiaomi from './Photos/xiaomi.jpg'
 
+
 interface sliderStateType {
     index: number,
     intervalId: any,
@@ -21,7 +22,8 @@ interface slidesType {
 }
 
 
-class Slider extends Component<{}, sliderStateType> {
+
+class Slider extends Component<any, sliderStateType> {
     private _isMounted: boolean
 
     constructor(props: {}) {

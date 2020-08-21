@@ -6,7 +6,7 @@ const styles: any = makeStyles(theme => ({
         border: '5px solid #fff',
         position: 'relative',
         "&::after": {
-            content: "'d'",
+            content: "' '",
             width: '100%',
             height: '100%',
             position: 'absolute',
@@ -36,6 +36,7 @@ const styles: any = makeStyles(theme => ({
     elemLabel: {
         width: '100%',
         height: '100%',
+        zIndex: 5,
         color: '#fff',
         display: 'flex',
         justifyContent: 'center',

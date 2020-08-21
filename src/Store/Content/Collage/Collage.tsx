@@ -9,23 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
 import styles from './styles'
-/* import './Collage.scss' */
 
 type CollageType = { collage: Array<CollageElementType> }
-
-/* const useStyles = makeStyles((theme) => ({
-    grid: {
-        width: '100%',
-        margin: '0px'
-    },
-    paper: {
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        background: theme.palette.warning.main
-    }
-})) */
-
 
 const Collage = ({ collage }: CollageType): JSX.Element => {
     const classes = styles()
@@ -33,21 +18,19 @@ const Collage = ({ collage }: CollageType): JSX.Element => {
         <Container fixed>
             <Grid container className={classes.collage}>
                 {collage.map(elem => (
-                    <Grid key={elem.id} item xs={6} className={classes.collageElem}>
+                    <Grid key={elem.id} item xs={12} md={6} className={classes.collageElem}>
                         <Link to={`/${elem.idGroup}/${elem.product}`}>
                             <div className={classes.elem}>
                                 {elem.img ? <img className={classes.img} src={elem.img} alt={elem.label} /> : 
                                 elem.video ? <Video video={elem.video} label={elem.label} /> : ''}
                             </div>
-                            <span className={classes.elemLabel} style={{zIndex: 5}}>{elem.label}</span>
+                            <span className={classes.elemLabel} >{elem.label}</span>
                         </Link>
                     </Grid>
                 ))}   
             </Grid>
         </Container>
-    )
-    
-    
+    )  
 }
 
 const mapStateToProps = (state: {CollageState: Array<CollageElementType>} ) => (

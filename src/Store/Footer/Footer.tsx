@@ -26,7 +26,7 @@ const Footer: React.FC = ({ classes }: any): JSX.Element => {
     return (
         <Grid className={classes.container}>
             <Container fixed>
-                <Grid container spacing={3} justify={"center"} className={classes.list}>
+                <Grid container spacing={3} justify="space-between" className={classes.list}>
                     {footerArray.map(elem => (
                         <Grid item xs={6} md={3} className={classes.block} key={elem.id}>
                             <div className={classes.blockHeader}>{elem.header}</div>
