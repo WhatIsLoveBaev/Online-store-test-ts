@@ -24,6 +24,7 @@ const styles: any = {
         borderLeft: '1px solid #525050',
         borderRight: '1px solid #525050',
         height: '100%',
+        maxWidth: '100px',
         margin: '0 24px',
         transition: '.3s',
         fontWeight: 'bold',
@@ -37,11 +38,13 @@ const styles: any = {
         justifyContent: 'center',
         flexGrow: 0.3,
         "& div": {
-            padding: '0 8px'
+            width: '85px',
+            textAlign: 'center'
         }
     },
     svgWrapper: {
-        margin: '0 12px',
+        marginLeft: '12px',
+        marginRight: '24px',
         minWidth: '120px',
         display: 'flex',
         flexGrow: 3
@@ -49,7 +52,16 @@ const styles: any = {
     svg: {
         height: '20px',
         padding: '0 12px'
+    },
+    productListContainer: {
+        height: '60px',
+        background: '#525050',
+        justifyContent: 'space-evenly',
+        '@media (max-width:1200px)': {
+            justifyContent: 'start',
+        }
     }
+
 }
 
 export default styles

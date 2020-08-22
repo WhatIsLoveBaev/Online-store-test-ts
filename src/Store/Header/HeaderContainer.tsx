@@ -4,19 +4,25 @@ import Link from '../../Link/index'
 import { DataBaseType } from "../../Reducers/DataBase/DataBase";
 import Header from './Header'
 import { getDataBase } from '../../Reducers/DataBase/DataBaseSelectors'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 import './Header.scss'
+import styles from './styles'
 
-interface DBStateType { DBState: DataBaseType }
+interface DBStateType { DBState: DataBaseType, classes: any }
 
 interface DBSaleType {
     productMakers: Array<string>,
-    productExamples: Array<{ id: string,
+    productExamples: Array<{ 
+        id: string,
         exampleMake: string,
-        example: string }>
+        example: string
+    }>
 }
 
 
-const HeaderContainer = ({ DBState }: DBStateType) => {
+const HeaderContainer = ({ DBState, classes }: DBStateType) => {
 
 
     const [modal, setModal] = useState(false)
@@ -87,14 +93,14 @@ const HeaderContainer = ({ DBState }: DBStateType) => {
             <span key={elem} className='product_element' onMouseEnter={(e:React.MouseEvent<HTMLSpanElement>) => onTime(e)}>{elem}</span>
         ))
         return (
-            <div className="product_list_container">
+            <Grid container className={classes.productListContainer}>
                 <div className='product_element_wrapper' onMouseLeave={() => offTime()} >
                     <button><span className="product_element sale" onMouseEnter={(e) => onTime(e)}>
                         Распродажа
                     </span></button>
                     {keysList}
                 </div>
-            </div>
+            </Grid>
         )
     }
     const onTime = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -114,4 +120,4 @@ const mapStateToProps = (state: { DataBase: DataBaseType }) => (
      { DBState: getDataBase(state) } 
 )
 
-export default connect(mapStateToProps)(HeaderContainer)
+export default connect(mapStateToProps)(withStyles(styles)(HeaderContainer))

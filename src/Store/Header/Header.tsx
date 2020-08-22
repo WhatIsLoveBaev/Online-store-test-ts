@@ -9,7 +9,7 @@ interface HeaderProps { modal: JSX.Element | undefined, productList: JSX.Element
 
 const Header = ({ modal, productList, classes }: HeaderProps) => (
     <div>
-        <Grid alignItems='center' justify='center' wrap='nowrap' className={classes.headerContainer}>
+        <Grid container alignItems='center' justify='center' wrap='nowrap' className={classes.headerContainer}>
             <Grid item className={classes.logoWrapper}>
                 <Link to='/'>
                     <div className={classes.logo}>STORE</div>
@@ -17,7 +17,7 @@ const Header = ({ modal, productList, classes }: HeaderProps) => (
             </Grid>
             <div className={classes.productWrapper}><div>товары</div></div>
             <Search />
-            <Grid item wrap='nowrap' className={classes.svgWrapper}>
+            <Grid item className={classes.svgWrapper}>
                 <span className={classes.svg}>
                     <Link to='/login'>
                         <svg fill='#fff' height="20" viewBox='0 0 20 20'>
