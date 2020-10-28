@@ -18,7 +18,7 @@ const Store = () => {
     return (
         <HashRouter>
             <ErrorBoundary>
-                <div className='store'>
+                <div className='store' style={{ position: 'relative'}}>
                     <HeaderContainer />
                     <Switch>
                         <Route path='/' component={Content} exact />

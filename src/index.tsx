@@ -9,6 +9,7 @@ import reducer from './Reducers/index'
 
 import Store from './Store/index';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const store = createStore(reducer)
 
@@ -23,10 +24,40 @@ function saveToLocal(state: any) {
 
 store.subscribe(() => saveToLocal(store.getState()))
 
+const theme = createMuiTheme({
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        top: '70px',
+        paddingBottom: '70px',
+        width: '320px'
+      },
+    },
+    MuiAccordion: {
+      
+    },
+    MuiAccordionSummary: {
+      root: {
+        padding: '12px 16px',
+        "&.Mui-expanded": {
+          minHeight: "0px"
+        }
+      },
+    },
+    MuiPaper: {
+      elevation1: {
+      }
+    }
+  }
+});
+
 
 ReactDOM.render(
   <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <Store />
+    </ThemeProvider>
+      
   </Provider>,document.getElementById('root'))
 
 /* store.subscribe(() => console.log(store.getState()) ) */

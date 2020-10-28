@@ -1,85 +1,44 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper'
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import useStyles from './styles';
 import Button from '@material-ui/core/Button'
-
 import Slider from '../Slider/index'
 import Collage from './Collage/index'
 import SaleLine  from './Sale/SaleLine/index'
 import SaleBlock from './Sale/SaleBlock/index'
 
-import { createMuiTheme } from '@material-ui/core/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
-
-const useStyles = makeStyles({
-    grid: {
-        width: '100%',
-        margin: '0px'
-    },
-    paper: {
-        padding: '8px',
-        textAlign: 'center',
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.primary.dark,
-        display: (props: { display: string }) => props.display
-    }
-})
-
 const Content = (props: any) => {
-    const classes = useStyles(props)
+
+
     return (
         <>
             
-        {/*     <Container disableGutters={true} fixed >
-                <Grid container spacing={3} justify={'center'} className={classes.grid}>
-                    <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
-                        <Paper className={classes.paper}>First</Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
-                        <Paper className={classes.paper}>Second</Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
-                        <Paper className={classes.paper}>Third</Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
-                        <Paper className={classes.paper}>Third</Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={4} md={3} lg={2} xl={1}>
-                        <Paper className={classes.paper}>Third</Paper>
-                    </Grid>
-                </Grid>
-            </Container> */}
-                
-            
             <SaleLine />
-            {<SaleBlock />}
+            <SaleBlock />
             <Slider />
             <Collage />
         </>
     ) 
 }
-
-Content.defaultProps = {
-    display: 'block',
-    backgroundColor: 'blue'
-}
-
 export default Content
+
+
+/* const dynamic = {
+    bg: true,
+    radius: '50%',
+    color: 'red',
+    padding: '100px',
+    col: 'red'
+} 
+const classes = useStyles(dynamic)
+const ENUM_ANSWER_RESULT_KEYS = {
+    CORRECT: 'correct',
+    NOT_CHECKED: 'not_checked',
+};
+const ENUM_ANSWER_RESULT = {
+    [ENUM_ANSWER_RESULT_KEYS.CORRECT]: 'Верный ответ',
+    [ENUM_ANSWER_RESULT_KEYS.NOT_CHECKED]: 'Неверный ответ',
+    'key_test': 'test'
+}; */
+
+/* <div>{ENUM_ANSWER_RESULT['not_checked']}</div> */

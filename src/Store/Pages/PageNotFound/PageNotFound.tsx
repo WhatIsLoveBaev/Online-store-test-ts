@@ -1,19 +1,21 @@
 import React from 'react'
 import Link from '../../../Link/index'
-import './PageNotFound.scss'
+import { withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import styles from './styles'
 
-const PageNotFound = (): JSX.Element => {
+const PageNotFound = ({ classes }: any): JSX.Element => {
     return (
-        <div className="no_liked_container">
-                <div className="no_liked">
+        <div className={classes.notFoundContainer}>
+                <div>
                     <h2>Произошла ошибка</h2>
                     <p>Данная страница не найдена или была удалена</p>
+                    <Link to={`/`}>
+                        <Button>Вернуться на главную</Button>
+                    </Link>
                 </div>
-                <Link to={`/`}>
-                    <button>Вернуться на главную</button>
-                </Link>
             </div>
     )
 }
 
-export default PageNotFound
+export default withStyles(styles)(PageNotFound)

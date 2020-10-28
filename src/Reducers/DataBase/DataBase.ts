@@ -5,6 +5,8 @@ import tablet from './imgExamples/tablet.jpg'
 import cameras from './imgExamples/camera.jpg'
 import keyboard from './imgExamples/keyboard.jpg'
 
+export const imagesForMobile: any = [phone, monitor, tablet, cameras, keyboard]
+
 export interface DataBaseType { [index: string]: DBStateElementType } 
 
 export interface DBStateElementType {

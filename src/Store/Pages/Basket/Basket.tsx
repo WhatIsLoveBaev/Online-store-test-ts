@@ -1,10 +1,14 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles'
+import styles from './styles';
 
-import './Basket.scss'
+interface basketTypes {
+    classes: any
+}
 
-const Basket = (): JSX.Element => {
+const Basket = ({ classes }: basketTypes): JSX.Element => {
     return (
-        <div className="basket_container">BASKET</div>
+        <div className={classes.basketContainer}>BASKET</div>
     )
 }
-export default Basket
+export default withStyles(styles)(Basket)

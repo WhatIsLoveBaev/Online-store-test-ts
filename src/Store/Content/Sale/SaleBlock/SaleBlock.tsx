@@ -41,20 +41,15 @@ const SaleBlock = ({ DBState, classes }: DBType): JSX.Element => {
 
                 <Grid container spacing={3} wrap='wrap' justify='center' className={classes.sbExamples}>
                     {arrSale.map(elem => (
-                        <Grid item xs={6} sm={3} md={2} lg={2} key={elem.productEngName}>
-                            
+                        <Grid item xs={6} sm={4} md={2} lg={2} key={elem.productEngName}>
                             <Link to={`/sale/${elem.productEngName}`}>
                             <Card className={classes.sbExample}>
-
                                     <div className={classes.sbImg}>
                                         <img src={elem.exampleContent} alt=""/>
                                     </div>
                                     <div className={classes.sbText}><span>{elem.productName}</span></div>
-
                                 </Card>
                             </Link>
-                            
-                            
                         </Grid>
                     ))}
                 </Grid>

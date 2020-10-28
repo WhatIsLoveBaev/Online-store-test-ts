@@ -5,11 +5,31 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import styles from './styles'
 
-interface HeaderProps { modal: JSX.Element | undefined, productList: JSX.Element, classes: any }
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 
-const Header = ({ modal, productList, classes }: HeaderProps) => (
-    <div>
+interface HeaderProps { 
+    modal: JSX.Element | undefined, 
+    productList: any, 
+    classes: any, 
+    toggleDrawer: any
+    mobileMenu: any,
+}
+
+const Header = ({ modal, productList, classes, mobileMenu, toggleDrawer }: HeaderProps) => { 
+    return (
+        <>
         <Grid container alignItems='center' justify='center' wrap='nowrap' className={classes.headerContainer}>
+            {
+            mobileMenu ?
+            <IconButton onClick={toggleDrawer(false)} className={classes.iconButton} color="inherit" aria-label="menu">
+                <CloseIcon />
+            </IconButton> :
+            <IconButton onClick={toggleDrawer(true)} className={classes.iconButton} color="inherit" aria-label="menu">
+                <MenuIcon />
+            </IconButton>
+            }
             <Grid item className={classes.logoWrapper}>
                 <Link to='/'>
                     <div className={classes.logo}>STORE</div>
@@ -42,8 +62,9 @@ const Header = ({ modal, productList, classes }: HeaderProps) => (
             </Grid>
         </Grid>
         {productList}
-        {modal} 
-    </div>
-)
+        {modal}
+    </>
+    )
+}
 
 export default withStyles(styles)(Header)

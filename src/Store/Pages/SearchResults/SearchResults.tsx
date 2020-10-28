@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import './SearchResults.scss'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 
 import SaleLine from '../../Content/Sale/SaleLine/index'
 import ProductElement from '../ProductsPage/ProductElement/ProductElement'
@@ -8,13 +10,15 @@ import {DataBaseType, productListArrayType} from "../../../Reducers/DataBase/Dat
 import {searchInputType} from "../../../Reducers/Header/HeaderReducer";
 import { getHeaderSearch } from '../../../Reducers/Header/HeaderSelector'
 import { getDataBase } from '../../../Reducers/DataBase/DataBaseSelectors';
+import styles from './styles';
 
 interface SearchResultsType {
     DBState: DataBaseType,
-    results: string
+    results: string,
+    classes: any
 }
 
-const SearchResults = ({ results, DBState }: SearchResultsType) => {
+const SearchResults = ({ results, DBState, classes }: SearchResultsType) => {
 
     let filteredName: Array<productListArrayType> = []
     let filteredKey = ''
@@ -39,41 +43,40 @@ const SearchResults = ({ results, DBState }: SearchResultsType) => {
 
     if (filteredName.length || filteredKey) {
         return (
-            <div className='results_container'>
+            <Grid container direction='column' alignItems="center" >
                 <SaleLine />
-                <div className="results">
+                <div className={classes.results}>
                     <p>Результаты поиска по</p>
                     <h2>{results.charAt(0).toUpperCase() + results.slice(1)}</h2>
                 </div>
 
-                <span className='preview_product_counter'>
+                <span className={classes.counter}>
                     {`Найдено товаров: ${filteredName.length ? 
                         filteredName.length : 
                         DBState[filteredKey].productListArray.length}
                     `}
                 </span>
                 
-                <div className="filter">Filter</div>
-                
-                <section className='preview_product_container'>
-                    {
-                        filteredName.length ? 
+                <div className={classes.filter}>Filter</div>
+                <Container className={classes.container}>
+                    <Grid container justify='center'>
+                        {filteredName.length ? 
                         filteredName.map(elem => <ProductElement key={elem.id} elem={elem} />) :  
                         filteredKey ? 
-                        DBState[filteredKey].productListArray.map(elem => <ProductElement key={elem.id} elem={elem} />) : false
-                    }
-                </section>
-            </div>
+                        DBState[filteredKey].productListArray.map(elem => <ProductElement key={elem.id} elem={elem} />) : false}
+                    </Grid>
+                </Container>
+            </Grid>
         ) 
     } else return (
         <div>
             <SaleLine />
-            <div className='no_results_container'>
-                <div className="no_results">
+            <Grid container justify="center" alignItems='center' className={classes.noResultsContainer}>
+                <div className={classes.noResults}>
                     <h2>Нам не удалось найти то, что вы ищите</h2>
                     <p>Проверьте написание или используйте в поиске производителя товара</p>
                 </div>
-            </div>
+            </Grid>
         </div>  
     )
 }
@@ -90,6 +93,6 @@ const mapStateToProps = (state: mapStateToPropsTypes) => {
 }
 
 //Search v1.0
-export default connect(mapStateToProps)(SearchResults)
+export default connect(mapStateToProps)(withStyles(styles)(SearchResults))
 
 // в слове можно допустить максимум 2 ошибки

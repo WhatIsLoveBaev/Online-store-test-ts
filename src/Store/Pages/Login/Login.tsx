@@ -1,9 +1,14 @@
 import React from 'react';
-import './Login.scss'
+import { withStyles } from '@material-ui/core/styles'
+import styles from './styles';
 
-const Login = (): JSX.Element => {
+interface loginTypes {
+    classes: any
+}
+
+const Login = ({ classes }: loginTypes): JSX.Element => {
     return (
-        <div className="login_container">LOGIN</div>
+        <div className={classes.loginContainer}>LOGIN</div>
     )
 }
-export default Login
+export default withStyles(styles)(Login)

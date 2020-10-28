@@ -1,24 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './ShowProducts.scss'
+import { withStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+/* import './ShowProducts.scss' */
 
 import SaleLine from '../../../Content/Sale/SaleLine/index'
 import ProductElement from '../ProductElement/ProductElement'
 import {DataBaseType, productListArrayType} from "../../../../Reducers/DataBase/DataBase";
 import { getDataBase } from "../../../../Reducers/DataBase/DataBaseSelectors";
+import styles from './styles'
 
 interface ShowProductsType {
     DBState: DataBaseType,
     idProduct: string,
-    SelectedProduct: string
+    SelectedProduct: string,
+    classes: any
 }
 
-const ShowProducts = ({ idProduct, SelectedProduct, DBState }: ShowProductsType) => {
+const ShowProducts = ({ idProduct, SelectedProduct, DBState, classes }: ShowProductsType) => {
 
     const sale = idProduct === 'sale'
     const selected = idProduct && SelectedProduct
     
-
     let arraySale: Array<productListArrayType> = []
     let arraySelected: Array<productListArrayType> = []
     
@@ -33,11 +37,9 @@ const ShowProducts = ({ idProduct, SelectedProduct, DBState }: ShowProductsType)
     } else if (sale) {
         for (let key in DBState) {
             if (DBState[key].saleGroup) {
-
                 DBState[key].productListArray.forEach(elem => {
                     if (elem.sale) arraySale.push(elem)
                 })
-
             }
         }
     } else if (selected) {
@@ -51,20 +53,24 @@ const ShowProducts = ({ idProduct, SelectedProduct, DBState }: ShowProductsType)
     const Show = whatRender.map(elem => <ProductElement key={elem.id} elem={elem} />)
 
     return (
-        <div>
+        <>
             <SaleLine />
-            <div className="description">
+            <Grid container justify="center" className={classes.description}>
                 <h2>{idProduct === 'sale' ? 
                     'Распродажа' : SelectedProduct ? 
                     `${idProduct} ${SelectedProduct}` : idProduct}
                 </h2>
-            </div>
-            <span className='preview_product_counter'>
+            </Grid>
+            <Grid container justify="center" className={classes.counter}>
                 {`Найдено товаров: ${whatRender.length}`}
-            </span>
-            <div className="preview_product_filter">Filter</div>
-            <section className='preview_product_container'>{Show}</section>
-        </div>
+            </Grid>
+            <Grid container justify="center" className={classes.filter}>Filter</Grid>
+            <Container className={classes.container}>
+                <Grid container justify="center">
+                    {Show}
+                </Grid>
+            </Container>
+        </>
     )
 }
 
@@ -72,4 +78,4 @@ const mapStateToProps = (state: { DataBase: DataBaseType} ) => (
     { DBState: getDataBase(state) }
 )
 
-export default connect(mapStateToProps, null)(ShowProducts)
+export default connect(mapStateToProps, null)(withStyles(styles)(ShowProducts))

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Link from '../../Link/index'
-import './Slider.scss'
+import { withStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 
 import imgIphone from './Photos/iphone.jpg'
 import imgSamsung from './Photos/samsung.jpg'
 import imgXiaomi from './Photos/xiaomi.jpg'
+import styles from './styles';
 
 
 interface sliderStateType {
@@ -20,13 +23,14 @@ interface slidesType {
     label: string,
     go: string
 }
+interface sliderPropsTypes {
+    classes: any
+}
 
-
-
-class Slider extends Component<any, sliderStateType> {
+class Slider extends Component<sliderPropsTypes, sliderStateType> {
     private _isMounted: boolean
 
-    constructor(props: {}) {
+    constructor(props: sliderPropsTypes) {
         super(props)
 
         this.state = {
@@ -36,7 +40,7 @@ class Slider extends Component<any, sliderStateType> {
                 {img: imgIphone, id:0, engGroupName: 'phones', product: 'apple', label: 'Iphone', go: 'Перейти'},
                 {img: imgSamsung, id:1, engGroupName: 'phones', product: 'samsung', label: 'Samsung', go: 'Перейти'},
                 {img: imgXiaomi, id:2, engGroupName: 'phones', product: 'xiaomi', label: 'Xiaomi', go: 'Перейти'},
-            ]
+            ],
         }
         this._isMounted = false
     }
@@ -44,7 +48,7 @@ class Slider extends Component<any, sliderStateType> {
     componentDidMount(): void {
         this._isMounted = true
         if (this._isMounted) {
-            let intervalId = setInterval(this.nextFunc, 12000)
+            let intervalId = setInterval(this.nextFunc, 120000)
             this.setState({ intervalId: intervalId })
         }  
     }
@@ -80,13 +84,14 @@ class Slider extends Component<any, sliderStateType> {
 
     slides = () => {
         const { slides, index } = this.state
+        const { classes } = this.props
 
         return slides.filter(elem => index === elem.id).map(elem => (
-            <div key={elem.id} className="slide active" style={{backgroundImage: `url(${elem.img})`}}>
-                <div className="container">
-                    <div className="caption">
-                        <div className="face front"><h1>{elem.label}</h1></div>
-                        <div className="face back">
+            <div key={elem.id} className={classes.slide} style={{backgroundImage: `url(${elem.img})`}}>
+                <div className={classes.container}>
+                    <div className={classes.caption}>
+                        <div className={`${classes.face} ${classes.front}`}><h1>{elem.label}</h1></div>
+                        <div className={`${classes.face} ${classes.back}`}>
                             <Link to={`/${elem.engGroupName}/${elem.product}`}>
                                 <h1>{elem.go}</h1>
                             </Link>
@@ -99,27 +104,27 @@ class Slider extends Component<any, sliderStateType> {
 
     circles = () => {
         const { slides, index } = this.state
+        const { classes } = this.props
 
         return slides.map(elem => {
             const active = index === elem.id ? 'active' : ''
             return (
-                <div key={elem.id} onClick={(e) => this.changeSlideCirc(e)} id={elem.id.toString()} className={`circle ${active}`}> </div>
+                <div key={elem.id} onClick={(e) => this.changeSlideCirc(e)} id={elem.id.toString()} className={`${classes.circle} ${active ? classes.circleActive : ''}`}> </div>
             )
         })
     }
 
     render() {
+        const { classes } = this.props
         return (
-            <section className='home'>
-                <div className="slider">{this.slides()}</div>
-                <div className="controls">
-                    <div className="prev" onClick={this.prevFunc}><span> </span></div>
-                    <div className="next" onClick={this.nextFunc}><span> </span></div>
-                </div>
-                <div className="circles">{this.circles()}</div>    
-            </section>
+            <Container className={classes.home}>
+                <Grid container justify="center" className={classes.slider}>{this.slides()}</Grid>
+                <div className={classes.prev} onClick={this.prevFunc}><span> </span></div>
+                <div className={classes.next} onClick={this.nextFunc}><span> </span></div>
+                <div className={classes.circles}>{this.circles()}</div>
+            </Container>
         )
     }
 }
 
-export default Slider;
+export default withStyles(styles)(Slider);
