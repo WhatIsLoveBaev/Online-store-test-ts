@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Online-store-test-ts/static/css/main.6429a8cd.chunk.css",
+    "main.js": "/Online-store-test-ts/static/js/main.bc58a692.chunk.js",
+    "main.js.map": "/Online-store-test-ts/static/js/main.bc58a692.chunk.js.map",
+    "runtime-main.js": "/Online-store-test-ts/static/js/runtime-main.44825ce3.js",
+    "runtime-main.js.map": "/Online-store-test-ts/static/js/runtime-main.44825ce3.js.map",
+    "static/js/2.685745b7.chunk.js": "/Online-store-test-ts/static/js/2.685745b7.chunk.js",
+    "static/js/2.685745b7.chunk.js.map": "/Online-store-test-ts/static/js/2.685745b7.chunk.js.map",
+    "index.html": "/Online-store-test-ts/index.html",
+    "precache-manifest.878d59f0e28e1b5bb30b9b704c0bbda4.js": "/Online-store-test-ts/precache-manifest.878d59f0e28e1b5bb30b9b704c0bbda4.js",
+    "service-worker.js": "/Online-store-test-ts/service-worker.js",
+    "static/css/main.6429a8cd.chunk.css.map": "/Online-store-test-ts/static/css/main.6429a8cd.chunk.css.map",
+    "static/js/2.685745b7.chunk.js.LICENSE.txt": "/Online-store-test-ts/static/js/2.685745b7.chunk.js.LICENSE.txt",
+    "static/media/stylesheet.css": "/Online-store-test-ts/static/media/FuturaPTCond-MediumObl.692f3bee.woff",
+    "static/media/camera.jpg": "/Online-store-test-ts/static/media/camera.1a653f31.jpg",
+    "static/media/iphone.jpg": "/Online-store-test-ts/static/media/iphone.8392114f.jpg",
+    "static/media/iphone_video.mp4": "/Online-store-test-ts/static/media/iphone_video.d9d50fbf.mp4",
+    "static/media/keyboard.jpg": "/Online-store-test-ts/static/media/keyboard.8fca6199.jpg",
+    "static/media/monitor.jpg": "/Online-store-test-ts/static/media/monitor.06684a8b.jpg",
+    "static/media/phone.jpg": "/Online-store-test-ts/static/media/phone.6c052b76.jpg",
+    "static/media/samsung.jpg": "/Online-store-test-ts/static/media/samsung.4acc56db.jpg",
+    "static/media/samsung_video.mp4": "/Online-store-test-ts/static/media/samsung_video.4bbf68d0.mp4",
+    "static/media/tablet.jpg": "/Online-store-test-ts/static/media/tablet.9127633d.jpg",
+    "static/media/xiaomi.jpg": "/Online-store-test-ts/static/media/xiaomi.ff4a7fdb.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.44825ce3.js",
+    "static/js/2.685745b7.chunk.js",
+    "static/css/main.6429a8cd.chunk.css",
+    "static/js/main.bc58a692.chunk.js"
+  ]
+}
