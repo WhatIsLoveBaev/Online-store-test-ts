@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cf600873.chunk.css",
+    "main.js": "/static/js/main.bc58a692.chunk.js",
+    "main.js.map": "/static/js/main.bc58a692.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.83c3e0c4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.83c3e0c4.js.map",
+    "static/js/2.f45b6703.chunk.js": "/static/js/2.f45b6703.chunk.js",
+    "static/js/2.f45b6703.chunk.js.map": "/static/js/2.f45b6703.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b8fc9f26fe85c70722989b327c3c58aa.js": "/precache-manifest.b8fc9f26fe85c70722989b327c3c58aa.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.cf600873.chunk.css.map": "/static/css/main.cf600873.chunk.css.map",
+    "static/js/2.f45b6703.chunk.js.LICENSE.txt": "/static/js/2.f45b6703.chunk.js.LICENSE.txt",
+    "static/media/stylesheet.css": "/static/media/FuturaPTCond-MediumObl.692f3bee.woff",
+    "static/media/camera.jpg": "/static/media/camera.1a653f31.jpg",
+    "static/media/iphone.jpg": "/static/media/iphone.8392114f.jpg",
+    "static/media/iphone_video.mp4": "/static/media/iphone_video.d9d50fbf.mp4",
+    "static/media/keyboard.jpg": "/static/media/keyboard.8fca6199.jpg",
+    "static/media/monitor.jpg": "/static/media/monitor.06684a8b.jpg",
+    "static/media/phone.jpg": "/static/media/phone.6c052b76.jpg",
+    "static/media/samsung.jpg": "/static/media/samsung.4acc56db.jpg",
+    "static/media/samsung_video.mp4": "/static/media/samsung_video.4bbf68d0.mp4",
+    "static/media/tablet.jpg": "/static/media/tablet.9127633d.jpg",
+    "static/media/xiaomi.jpg": "/static/media/xiaomi.ff4a7fdb.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.83c3e0c4.js",
+    "static/js/2.f45b6703.chunk.js",
+    "static/css/main.cf600873.chunk.css",
+    "static/js/main.bc58a692.chunk.js"
+  ]
+}
