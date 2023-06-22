@@ -1,1 +1,1 @@
-online store ts
+Not relevant as an example
